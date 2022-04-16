@@ -56,13 +56,17 @@ class SotNFile:
     def __repr__(self):
         return f'\n<Zone Info:{self.room_list}\nTile Layer Info:{self.ptrs_list}>\n'
 
-
 def main():
     # ST0  <- Final Stage: Bloodletting
     from pprint import pprint
-    print('Intro:', SotNFile("sotn-iso-map-dump/ST/ST0/ST0.BIN"))
-    print('Maria Clock Tower:', SotNFile("sotn-iso-map-dump/BOSS/MAR/MAR.BIN"))
-    print('Alucard Nightmare:', SotNFile("sotn-iso-map-dump/ST/DRE/DRE.BIN"))
+    stage_list = [
+        'ARE', 'CAT', 'CEN', 'CHI', 'DAI', 'DRE', 'LIB', 'NO0', 'NO1', 'NO2', 'NO3',
+        'NO4', 'NP3', 'NZ0', 'NZ1', 'SEL', 'TOP', 'WRP',
+    ]
+    print(sum(map(lambda x: len(x.room_list), map(lambda x: SotNFile(f"sotn-iso-map-dump/ST/{x}/{x}.BIN"), stage_list))))
+    #print('Intro:', SotNFile("sotn-iso-map-dump/ST/ST0/ST0.BIN"))
+    #print('Maria Clock Tower:', SotNFile("sotn-iso-map-dump/BOSS/MAR/MAR.BIN"))
+    #print('Alucard Nightmare:', SotNFile("sotn-iso-map-dump/ST/DRE/DRE.BIN"))
 
 if __name__ == '__main__':
     main()
